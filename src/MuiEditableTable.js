@@ -1,13 +1,13 @@
 import React from "react";
-import FlatButton from "material-ui/FlatButton";
-import TextField from "material-ui/TextField";
-import SelectField from "material-ui/SelectField";
-import Toggle from "material-ui/Toggle";
-import MenuItem from "material-ui/MenuItem";
-import AddIcon from 'material-ui/svg-icons/content/add';
-import DeleteIcon from 'material-ui/svg-icons/content/clear';
-import PromoteIcon from 'material-ui/svg-icons/navigation/arrow-drop-up';
-import DemoteIcon from 'material-ui/svg-icons/navigation/arrow-drop-down';
+import IconButton from "@material-ui/core/Button";
+import TextField from "@material-ui/core//TextField";
+import SelectField from "@material-ui/core//Select";
+import Switch from "@material-ui/core//Switch";
+import MenuItem from "@material-ui/core/MenuItem";
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Clear';
+import PromoteIcon from '@material-ui/icons/ArrowDropUp';
+import DemoteIcon from '@material-ui/icons/ArrowDropDown';
 import $ from "jquery";
 
 class MuiEditableTable extends React.Component {
@@ -61,7 +61,6 @@ class MuiEditableTable extends React.Component {
                     <input
                         type="hidden"
                         id="mui-editable-table-count"
-                        ref="mui-editable-table-count"
                         value={this.state.rowData.length}
                         readOnly="readOnly"
                     />
@@ -135,7 +134,6 @@ class MuiEditableTable extends React.Component {
         if (column.inputType === "TextField") {
             return (
                 <TextField
-                    ref={column.fieldName + index}
                     id={column.fieldName + index}
                     style={{width: column.width}}
                     value={column.fieldName in rowData ? rowData[column.fieldName] : ''}
@@ -145,7 +143,6 @@ class MuiEditableTable extends React.Component {
         } else if (column.inputType === "SelectField") {
             return (
                 <SelectField
-                    ref={column.fieldName + index}
                     id={column.fieldName + index}
                     style={{width: column.width}}
                     value={column.fieldName in rowData ? rowData[column.fieldName] : ''}
@@ -158,12 +155,11 @@ class MuiEditableTable extends React.Component {
             )
         } else if (column.inputType === "Toggle") {
             return (
-                <Toggle
-                    ref={column.fieldName + index}
+                <Switch
                     id={column.fieldName + index}
                     style={{width: column.width}}
-                    defaultToggled={column.fieldName in rowData ? rowData[column.fieldName] : false}
-                    onToggle={this.onFieldChange(index, column.fieldName)}
+                    checked={column.fieldName in rowData ? rowData[column.fieldName] : false}
+                    onChange={this.onSwitchChange(index, column.fieldName)}
                 />
             )
         }
@@ -206,13 +202,12 @@ class MuiEditableTable extends React.Component {
         return (
             <div className="cell action" key={"action" + action + rowKey} style={{width: "45px", display: "inline"}}>
 
-                <FlatButton
+                <IconButton
                     className={"action-button " + action + "-row-button" + rowKey}
-                    primary={true}
                     onClick={clickEvent}
-                    style={{minWidth: "45px"}}
-                    icon={muiIcon}
-                />
+                    style={{minWidth: "45px"}}>
+                    {muiIcon}
+                </IconButton>
             </div>
         )
     }
@@ -262,15 +257,26 @@ class MuiEditableTable extends React.Component {
     }
 
     onFieldChange(rowId, fieldName) {
-        const self = this;
-        return function (event, textFieldValue, selectFieldValue) {
-            let newValue = selectFieldValue ? selectFieldValue : textFieldValue;
-            let tempDataRow = $.extend(true, [], self.state.rowData);
+        return (event) => {
+            const newValue = event.target.value;
+            let tempDataRow = $.extend(true, [], this.state.rowData);
 
             tempDataRow[rowId][fieldName] = newValue;
 
-            self.setState({rowData: tempDataRow});
-            self.state.onChange(tempDataRow)
+            this.setState({rowData: tempDataRow});
+            this.state.onChange(tempDataRow)
+        }
+    }
+
+    onSwitchChange(rowId, fieldName) {
+        return (event) => {
+            const newValue = event.target.checked;
+            let tempDataRow = $.extend(true, [], this.state.rowData);
+
+            tempDataRow[rowId][fieldName] = newValue;
+
+            this.setState({rowData: tempDataRow});
+            this.state.onChange(tempDataRow)
         }
     }
 }
