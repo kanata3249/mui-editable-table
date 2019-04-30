@@ -138,14 +138,14 @@ class MuiEditableTable extends React.Component {
 
     renderInputField(column, index, rowData) {
         if (column.isReadOnly && column.isReadOnly(rowData)){
-            return (<div style={{width: column.width}}></div>)
+            return (<div style={{width: "100%"}}></div>)
         }
 
         if (column.inputType === "TextField") {
             return (
                 <TextField
                     id={column.fieldName + index}
-                    style={{width: column.width}}
+                    style={{width: "100%"}}
                     value={column.fieldName in rowData ? rowData[column.fieldName] : ''}
                     onChange={this.onFieldChange(index, column.fieldName)}
                 />
@@ -154,7 +154,7 @@ class MuiEditableTable extends React.Component {
             return (
                 <SelectField
                     id={column.fieldName + index}
-                    style={{width: column.width}}
+                    style={{width: "100%"}}
                     value={column.fieldName in rowData ? rowData[column.fieldName] : ''}
                     onChange={this.onFieldChange(index, column.fieldName)}
                 >
@@ -167,7 +167,7 @@ class MuiEditableTable extends React.Component {
             return (
                 <Switch
                     id={column.fieldName + index}
-                    style={{width: column.width}}
+                    style={{width: "100%"}}
                     checked={column.fieldName in rowData ? rowData[column.fieldName] : false}
                     onChange={this.onSwitchChange(index, column.fieldName)}
                 />

@@ -187,7 +187,7 @@ function (_React$Component) {
       if (column.isReadOnly && column.isReadOnly(rowData)) {
         return _react["default"].createElement("div", {
           style: {
-            width: column.width
+            width: "100%"
           }
         });
       }
@@ -196,7 +196,7 @@ function (_React$Component) {
         return _react["default"].createElement(_TextField["default"], {
           id: column.fieldName + index,
           style: {
-            width: column.width
+            width: "100%"
           },
           value: column.fieldName in rowData ? rowData[column.fieldName] : '',
           onChange: this.onFieldChange(index, column.fieldName)
@@ -205,7 +205,7 @@ function (_React$Component) {
         return _react["default"].createElement(_Select["default"], {
           id: column.fieldName + index,
           style: {
-            width: column.width
+            width: "100%"
           },
           value: column.fieldName in rowData ? rowData[column.fieldName] : '',
           onChange: this.onFieldChange(index, column.fieldName)
@@ -216,7 +216,7 @@ function (_React$Component) {
         return _react["default"].createElement(_Switch["default"], {
           id: column.fieldName + index,
           style: {
-            width: column.width
+            width: "100%"
           },
           checked: column.fieldName in rowData ? rowData[column.fieldName] : false,
           onChange: this.onSwitchChange(index, column.fieldName)
