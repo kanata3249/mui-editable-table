@@ -240,7 +240,12 @@ function (_React$Component) {
         }
       }
 
-      return _react["default"].createElement("div", null, buttons);
+      return _react["default"].createElement("div", {
+        className: "cell actions",
+        style: {
+          width: "100px"
+        }
+      }, buttons);
     }
   }, {
     key: "iconButton",

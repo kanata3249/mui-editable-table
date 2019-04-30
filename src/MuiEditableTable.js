@@ -192,7 +192,7 @@ class MuiEditableTable extends React.Component {
         }
 
         return (
-            <div>
+            <div className={"cell actions"} style={{width: "100px"}}>
                 {buttons}
             </div>
         )
