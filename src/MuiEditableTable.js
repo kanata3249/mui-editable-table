@@ -49,21 +49,31 @@ class MuiEditableTable extends React.Component {
             alignItems: "center",
             fontFamily: "Roboto, sans-serif",
         };
+        const editableTableRowsStyle = {
+            display: "flex",
+            flexFlow: "column nowrap",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            fontFamily: "Roboto, sans-serif",
+            width: '100%'
+        };
 
         return (
             <div className="container" style={this.state.containerStyle}>
                 <div className="mui-editable-table" style={editableTableStyle}>
                     {this.renderHeader()}
 
-                    {this.state.rowData.map((dataRow, i) => (
-                        this.renderRow(dataRow, i)
-                    ))}
-                    <input
-                        type="hidden"
-                        id="mui-editable-table-count"
-                        value={this.state.rowData.length}
-                        readOnly="readOnly"
-                    />
+                    <div className="mui-editable-table-rows" style={editableTableRowsStyle}>
+                        {this.state.rowData.map((dataRow, i) => (
+                            this.renderRow(dataRow, i)
+                        ))}
+                        <input
+                            type="hidden"
+                            id="mui-editable-table-count"
+                            value={this.state.rowData.length}
+                            readOnly="readOnly"
+                        />
+                    </div>
                 </div>
             </div>
         )

@@ -94,20 +94,31 @@ function (_React$Component) {
         alignItems: "center",
         fontFamily: "Roboto, sans-serif"
       };
+      var editableTableRowsStyle = {
+        display: "flex",
+        flexFlow: "column nowrap",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        fontFamily: "Roboto, sans-serif",
+        width: '100%'
+      };
       return _react["default"].createElement("div", {
         className: "container",
         style: this.state.containerStyle
       }, _react["default"].createElement("div", {
         className: "mui-editable-table",
         style: editableTableStyle
-      }, this.renderHeader(), this.state.rowData.map(function (dataRow, i) {
+      }, this.renderHeader(), _react["default"].createElement("div", {
+        className: "mui-editable-table-rows",
+        style: editableTableRowsStyle
+      }, this.state.rowData.map(function (dataRow, i) {
         return _this2.renderRow(dataRow, i);
       }), _react["default"].createElement("input", {
         type: "hidden",
         id: "mui-editable-table-count",
         value: this.state.rowData.length,
         readOnly: "readOnly"
-      })));
+      }))));
     }
   }, {
     key: "renderHeader",
