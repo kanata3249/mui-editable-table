@@ -93,7 +93,7 @@ class MuiEditableTable extends React.Component {
                         {col.title}
                     </div>
                 ))}
-                <div className={"row-cell header-cell action"} style={{width: "100px"}}>
+                <div className={"row-cell header-cell actions"} style={{width: "100px"}}>
                     {this.iconButton('', 'add', this.onAddRow(), <AddIcon />)}
                 </div>
             </div>

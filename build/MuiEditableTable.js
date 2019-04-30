@@ -135,7 +135,7 @@ function (_React$Component) {
           }
         }, col.title);
       }), _react["default"].createElement("div", {
-        className: "row-cell header-cell action",
+        className: "row-cell header-cell actions",
         style: {
           width: "100px"
         }
